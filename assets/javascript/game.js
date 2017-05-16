@@ -1,3 +1,5 @@
+//vars
+
 var $gamesWon = 0;
 var $gamesLost = 0;
 var $userScore = 0;
@@ -13,16 +15,43 @@ var $randomFour = Math.floor(Math.random() * (10 - 5 + 1)) + 5;
 // 20-65
 
 var $randomGuess = Math.floor(Math.random() * (90 - 10 + 1)) + 10;
-var $computerGuess = $("<div>").html("<h4>" + $randomGuess + "<h4>");
-$("#winLoss").append($computerGuess);
+
+function compGuess() {
+    var $computerGuess = $("<div>").html("<h4>" + $randomGuess + "<h4>");
+    $("#winLoss").append($computerGuess);
+    console.log($randomGuess);
+};
+compGuess();
 
 //capture button click
+//crystalOne
+$("#crystalOne").click(function() {
+    $userScore = parseInt($userScore) + parseInt($randomOne);
+    $("#userScore").html("<h4>" + $userScore + "<h4>");
+    console.log($userScore);
+});
+// crystalTwo
+$("#crystalTwo").click(function() {
+    $userScore = parseInt($userScore) + parseInt($randomTwo);
+    $("#userScore").html("<h4>" + $userScore + "<h4>");
+    console.log($userScore);
+});
 
-// $(#crylstalOne).click(function() {
-            //     $userScore = parseInt($userScore) + parseInt($randomOne);
+// crystalThree
 
-            // })
+$("#crystalThree").click(function() {
+    $userScore = parseInt($userScore) + parseInt($randomThree);
+    $("#userScore").html("<h4>" + $userScore + "<h4>");
+    console.log($userScore);
+});
 
+// crystalFour
+
+$("#crystalFour").click(function() {
+    $userScore = parseInt($userScore) + parseInt($randomFour);
+    $("#userScore").html("<h4>" + $userScore + "<h4>");
+    console.log($userScore);
+});
 
 
 
@@ -31,7 +60,25 @@ var $score = $("<div>").html("<h4>" + $userScore + "<h4>");
 $("#userScore").append($score);
 
 //track win/loss
-var $wins = $("<div>").html("Games won: " + $gamesWon);
-$("#winLoss").append($wins);
-var $losses = $("<div>").html("Games lost: " + $gamesLost);
-$("#winLoss").append($losses);
+function printWins() {
+    var $wins = $("<div>").html("Games won: " + $gamesWon);
+    $("#winLoss").append($wins);
+    var $losses = $("<div>").html("Games lost: " + $gamesLost);
+    $("#winLoss").append($losses);
+};
+printWins();
+
+//wins
+
+if (parseInt($userScore) === parseInt($randomGuess)) {
+    alert("You got it!");
+    $gamesWon++;
+    printWins();
+    compGuess();
+}
+if (parseInt($userScore) > parseInt($randomGuess)) {
+    alert("Bummer! Too Much!");
+    $gamesLost++;
+    printWins();
+    compGuess();
+}
